@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"github.com/AllenDang/w32"
 	"image"
+	"image/png"
+	"os"
 	"reflect"
 	"unsafe"
 )

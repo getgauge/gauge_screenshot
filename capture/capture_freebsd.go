@@ -1,10 +1,11 @@
 package capture
 
 import (
-	"image"
-
 	"github.com/BurntSushi/xgb"
 	"github.com/BurntSushi/xgb/xproto"
+	"image"
+	"image/png"
+	"os"
 )
 
 func ScreenRect() (image.Rectangle, error) {
