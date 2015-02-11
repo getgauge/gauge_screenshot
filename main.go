@@ -8,7 +8,7 @@ import (
 
 func main() {
 	if len(os.Args) < 2 {
-		fmt.Println("Please specify the filename to save the captured screenshot.")
+		fmt.Printf("Usage: %s <target filepath>\n", os.Args[0])
 		os.Exit(0)
 	}
 	err := capture.CaptureScreen(os.Args[1])
