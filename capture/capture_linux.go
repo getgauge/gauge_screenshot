@@ -1,4 +1,4 @@
-package screenshot
+package capture
 
 import (
 	"image"
@@ -21,12 +21,22 @@ func ScreenRect() (image.Rectangle, error) {
 	return image.Rect(0, 0, int(x), int(y)), nil
 }
 
-func CaptureScreen() (*image.RGBA, error) {
+func CaptureScreen(filename string) error {
 	r, e := ScreenRect()
 	if e != nil {
-		return nil, e
+		return e
 	}
-	return CaptureRect(r)
+
+	f, err := os.Create(filename)
+	if err != nil {
+		return err
+	}
+	defer f.close()
+
+	err = png.Encode(f, CaptureRect(r))
+	if err != nil {
+		return err
+	}
 }
 
 func CaptureRect(rect image.Rectangle) (*image.RGBA, error) {

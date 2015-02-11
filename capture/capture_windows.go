@@ -1,4 +1,4 @@
-package screenshot
+package capture
 
 import (
 	"fmt"
@@ -19,12 +19,22 @@ func ScreenRect() (image.Rectangle, error) {
 	return image.Rect(0, 0, x, y), nil
 }
 
-func CaptureScreen() (*image.RGBA, error) {
+func CaptureScreen(filename string) error {
 	r, e := ScreenRect()
 	if e != nil {
-		return nil, e
+		return e
 	}
-	return CaptureRect(r)
+
+	f, err := os.Create(filename)
+	if err != nil {
+		return err
+	}
+	defer f.close()
+
+	err = png.Encode(f, CaptureRect(r))
+	if err != nil {
+		return err
+	}
 }
 
 func CaptureRect(rect image.Rectangle) (*image.RGBA, error) {
@@ -65,7 +75,7 @@ func CaptureRect(rect image.Rectangle) (*image.RGBA, error) {
 	if obj == 0 {
 		return nil, fmt.Errorf("error occurred and the selected object is not a region err:%d.\n", w32.GetLastError())
 	}
-	if obj == 0xffffffff { //GDI_ERROR 
+	if obj == 0xffffffff { //GDI_ERROR
 		return nil, fmt.Errorf("GDI_ERROR while calling SelectObject err:%d.\n", w32.GetLastError())
 	}
 	defer w32.DeleteObject(obj)
