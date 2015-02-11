@@ -31,7 +31,12 @@ func CaptureScreen(filename string) error {
 	}
 	defer f.close()
 
-	err = png.Encode(f, CaptureRect(r))
+	img, err := CaptureRect(r)
+	if err != nil {
+		return err
+	}
+
+	err = png.Encode(f, img)
 	if err != nil {
 		return err
 	}
