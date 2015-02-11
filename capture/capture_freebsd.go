@@ -32,7 +32,7 @@ func CaptureScreen(filename string) error {
 	if err != nil {
 		return err
 	}
-	defer f.close()
+	defer f.Close()
 
 	img, err := CaptureRect(r)
 	if err != nil {
@@ -43,6 +43,7 @@ func CaptureScreen(filename string) error {
 	if err != nil {
 		return err
 	}
+	return nil
 }
 
 func CaptureRect(rect image.Rectangle) (*image.RGBA, error) {
