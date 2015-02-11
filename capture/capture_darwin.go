@@ -1,4 +1,4 @@
-package screenshot
+package capture
 
 import (
 	"os/exec"
