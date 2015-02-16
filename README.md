@@ -16,3 +16,14 @@ In order to compile this code, `gcc` must be installed. Please ensure that you i
 
 ## Credits
 This code has been forked from [vova616/screenshot](https://github.com/vova616/screenshot). The purposes have diverged slightly, the original `screenshot` package serves as a library, `gauge_screenshot` serves as a standalone utility.
+
+A list of all dependencies can be found [here](https://github.com/getgauge/gauge_screenshot/blob/master/notice.md)
+
+## License
+
+![GNU Public License version 3.0](http://www.gnu.org/graphics/gplv3-127x51.png)
+Gauge is released under [GNU Public License version 3.0](http://www.gnu.org/licenses/gpl-3.0.txt)
+
+## Copyright
+
+Copyright 2015 ThoughtWorks, Inc.
