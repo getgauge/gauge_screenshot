@@ -17,7 +17,7 @@ In order to compile this code, `gcc` must be installed. Please ensure that you i
 ## Credits
 This code has been forked from [vova616/screenshot](https://github.com/vova616/screenshot). The purposes have diverged slightly, the original `screenshot` package serves as a library, `gauge_screenshot` serves as a standalone utility.
 
-A list of all dependencies can be found [here](https://github.com/getgauge/gauge_screenshot/blob/master/notice.md)
+A list of all dependencies can be found [here](https://github.com/getgauge/gauge_screenshot/blob/master/NOTICE.md)
 
 ## License
 
