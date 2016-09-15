@@ -23,7 +23,7 @@ import (
 )
 
 func CaptureScreen(filename string) error {
-	cmd := exec.Command("screencapture", filename)
+	cmd := exec.Command("screencapture", "-x", filename)
 	err := cmd.Run()
 	return err
 }
