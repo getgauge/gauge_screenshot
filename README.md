@@ -9,6 +9,8 @@ Simple cross-platform pure Go screenshot library. This is used by [Gauge](https:
 ### Note to Windows users
 In order to compile this code, `gcc` must be installed. Please ensure that you install the MinGW gcc and *not* Cygwin. Also ensure that if you have 64-bit Go installed, then MinGW/gcc is also 64-bit.
 
+One way to install the required way of `gcc` on Windows is to use the [mingw-w64-install.exe](https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win32/Personal%20Builds/mingw-builds/installer/mingw-w64-install.exe/download) which can fetch and install the desired version of `gcc`.
+
 ## Dependencies:
 - Windows: https://github.com/AllenDang/w32
 - Linux/Freebsd: https://github.com/BurntSushi/xgb
