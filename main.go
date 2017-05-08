@@ -20,7 +20,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/getgauge/screenshot/capture"
+	"github.com/getgauge/gauge_screenshot/capture"
 	"os"
 )
 
