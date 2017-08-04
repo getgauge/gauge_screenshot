@@ -22,10 +22,14 @@ import (
 	"image/png"
 	"os"
 	"path/filepath"
+	"runtime"
 	"testing"
 )
 
 func TestCaptureScreen(t *testing.T) {
+	if runtime.GOOS == "linux" || runtime.GOOS == "freebsd" {
+		t.Skip("Tests do not run on linux/freebsd, displays need X")
+	}
 	outFile := filepath.Join("_testdata", "output.png")
 	err := CaptureScreen(outFile)
 	if err != nil {
