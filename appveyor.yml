@@ -1,0 +1,10 @@
+version: 1.0.{build}
+clone_folder: c:\gopath\src\github.com\getgauge\gauge_screenshot
+environment:
+  GOPATH: c:\gopath
+build_script:
+- ps: >-
+    go get github.com/getgauge/gauge_screenshot
+test_script:
+- ps: >-
+    go test github.com/getgauge/gauge_screenshot/...
