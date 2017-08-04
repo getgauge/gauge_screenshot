@@ -5,6 +5,7 @@ environment:
 init:
 - ps: >-
     choco install mingw
+    
     Write-Host "Done installing mingw"
 build_script:
 - ps: >-

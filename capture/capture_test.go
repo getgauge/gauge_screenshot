@@ -27,7 +27,10 @@ import (
 
 func TestCaptureScreen(t *testing.T) {
 	outFile := filepath.Join("_testdata", "output.png")
-	CaptureScreen(outFile)
+	err := CaptureScreen(outFile)
+	if err != nil {
+		t.Error(err)
+	}
 
 	f, err := os.Open(outFile)
 
