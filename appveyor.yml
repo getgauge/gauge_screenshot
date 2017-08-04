@@ -5,10 +5,11 @@ environment:
 init:
 - ps: >-
     choco install mingw
-    $env:Path = "$env:GOPATH\bin;" + [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+    Write-Host "Done installing mingw"
 build_script:
 - ps: >-
+    $env:Path = "C:\tools\mingw64;$env:GOPATH\bin;" + [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
     go get github.com/getgauge/gauge_screenshot
 test_script:
 - ps: >-
-    go test github.com/getgauge/gauge_screenshot/...
+    go test .\...
