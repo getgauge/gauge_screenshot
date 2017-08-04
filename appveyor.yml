@@ -2,6 +2,9 @@ version: 1.0.{build}
 clone_folder: c:\gopath\src\github.com\getgauge\gauge_screenshot
 environment:
   GOPATH: c:\gopath
+init:
+- ps: >-
+    choco install mingw
 build_script:
 - ps: >-
     go get github.com/getgauge/gauge_screenshot
