@@ -5,6 +5,7 @@ environment:
 init:
 - ps: >-
     choco install mingw
+    refreshenv
 build_script:
 - ps: >-
     go get github.com/getgauge/gauge_screenshot
