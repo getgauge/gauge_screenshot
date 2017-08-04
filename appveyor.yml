@@ -5,7 +5,7 @@ environment:
 init:
 - ps: >-
     choco install mingw
-    refreshenv
+    $env:Path = "$env:GOPATH\bin;" + [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
 build_script:
 - ps: >-
     go get github.com/getgauge/gauge_screenshot
