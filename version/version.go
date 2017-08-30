@@ -16,31 +16,6 @@
 // You should have received a copy of the GNU General Public License
 // along with Gauge-Screenshot.  If not, see <http://www.gnu.org/licenses/>.
 
-package main
+package version
 
-import (
-	"flag"
-	"fmt"
-	"os"
-
-	"github.com/getgauge/gauge_screenshot/capture"
-	"github.com/getgauge/gauge_screenshot/version"
-)
-
-var versionFlag = flag.Bool("version", false, "Print version")
-
-func main() {
-	flag.Parse()
-	if *versionFlag {
-		fmt.Println(version.Version)
-		return
-	}
-	if len(os.Args) < 2 {
-		fmt.Printf("Usage: %s <target filepath>\n", os.Args[0])
-		os.Exit(0)
-	}
-	err := capture.CaptureScreen(os.Args[1])
-	if err != nil {
-		panic(err)
-	}
-}
+var Version = "0.0.1"

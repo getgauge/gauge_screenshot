@@ -12,6 +12,7 @@ build_script:
     $env:Path = "C:\tools\mingw64;$env:GOPATH\bin;" + [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
     
     go get github.com/getgauge/gauge_screenshot
+    go get github.com/getgauge/gauge_screenshot/build
 test_script:
 - ps: >-
     go test .\...
