@@ -1,19 +1,20 @@
 // Copyright 2015 ThoughtWorks, Inc.
+// Copyright (C) 2012 vova616 <vova616@gmail.com>
 
-// This file is part of getgauge/html-report.
+// This file is part of Gauge-Screenshot.
 
-// getgauge/html-report is free software: you can redistribute it and/or modify
+// Gauge-Screenshot is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 
-// getgauge/html-report is distributed in the hope that it will be useful,
+// Gauge-Screenshot is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
 
 // You should have received a copy of the GNU General Public License
-// along with getgauge/html-report.  If not, see <http://www.gnu.org/licenses/>.
+// along with Gauge-Screenshot.  If not, see <http://www.gnu.org/licenses/>.
 
 package main
 
@@ -51,6 +52,7 @@ const (
 	screenshot        = "screenshot"
 	deploy            = "deploy"
 	pluginJSONFile    = "plugin.json"
+	CC                = "CC"
 )
 
 var deployDir = filepath.Join(deploy, screenshot)
@@ -280,8 +282,8 @@ var (
 		map[string]string{GOARCH: x86_64, goOS: DARWIN, CGO_ENABLED: "0"},
 		map[string]string{GOARCH: x86, goOS: LINUX, CGO_ENABLED: "0"},
 		map[string]string{GOARCH: x86_64, goOS: LINUX, CGO_ENABLED: "0"},
-		map[string]string{GOARCH: x86, goOS: WINDOWS, CGO_ENABLED: "0"},
-		map[string]string{GOARCH: x86_64, goOS: WINDOWS, CGO_ENABLED: "0"},
+		map[string]string{GOARCH: x86, goOS: WINDOWS, CC: "i586-mingw32-gcc", CGO_ENABLED: "1"},
+		map[string]string{GOARCH: x86_64, goOS: WINDOWS, CC: "x86_64-w64-mingw32-gcc", CGO_ENABLED: "1"},
 	}
 )
 
@@ -303,6 +305,7 @@ func compileAcrossPlatforms() {
 	for _, platformEnv := range platformEnvs {
 		setEnv(platformEnv)
 		fmt.Printf("Compiling for platform => OS:%s ARCH:%s \n", platformEnv[goOS], platformEnv[GOARCH])
+		runProcess("go", "get", "./...")
 		compileGoPackage(screenshot)
 	}
 }
