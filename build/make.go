@@ -50,6 +50,7 @@ const (
 	newDirPermissions = 0755
 	gauge             = "gauge"
 	screenshot        = "screenshot"
+	gaugeScreenshot   = "gauge_screenshot"
 	deploy            = "deploy"
 	pluginJSONFile    = "plugin.json"
 	CC                = "CC"
@@ -203,7 +204,7 @@ func executeCommand(command string, arg ...string) (string, error) {
 }
 
 func compileGoPackage(packageName string) {
-	runProcess("go", "build", "-o", getGaugeExecutablePath(screenshot))
+	runProcess("go", "build", "-o", getGaugeExecutablePath(gaugeScreenshot))
 }
 
 func getGaugeExecutablePath(file string) string {
@@ -248,9 +249,9 @@ func copyFiles(files map[string]string, installDir string) {
 func copyPluginFiles(destDir string) {
 	files := make(map[string]string)
 	if getGOOS() == "windows" {
-		files[filepath.Join(getBinDir(), screenshot+".exe")] = ""
+		files[filepath.Join(getBinDir(), gaugeScreenshot+".exe")] = ""
 	} else {
-		files[filepath.Join(getBinDir(), screenshot)] = ""
+		files[filepath.Join(getBinDir(), gaugeScreenshot)] = ""
 	}
 	files[pluginJSONFile] = ""
 	copyFiles(files, destDir)
