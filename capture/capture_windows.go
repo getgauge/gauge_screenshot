@@ -20,7 +20,7 @@ package capture
 
 import (
 	"fmt"
-	"github.com/AllenDang/w32"
+	"github.com/TheTitanrain/w32"
 	"image"
 	"image/png"
 	"os"
