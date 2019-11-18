@@ -17,9 +17,12 @@ jobs:
 
       - name: Build artifacts
         run: |
+          go run build/make.go --all-platforms
           go run build/make.go --all-platforms --distro
+
       - name: Install hub
         run: brew install hub
+
       - name: update
         run: |
           cd deploy
