@@ -15,6 +15,9 @@ jobs:
           go-version: 1.13
         id: go
 
+      - name: Check out code into the Go module directory
+        uses: actions/checkout@v1
+
       - name: Build artifacts
         run: |
           go run build/make.go --all-platforms
@@ -38,8 +41,8 @@ jobs:
           echo "---------------------------"
           echo "Updating release v$version"
           echo "---------------------------"
-          echo -e "Gauge Dotnet v$version\n\n" > desc.txt
-          release_description=$(ruby -e "$(curl -sSfL https://github.com/getgauge/gauge/raw/master/build/create_release_text.rb)" gauge-dotnet getgauge)
+          echo -e "Gauge Screenshot v$version\n\n" > desc.txt
+          release_description=$(ruby -e "$(curl -sSfL https://github.com/getgauge/gauge/raw/master/build/create_release_text.rb)" gauge_screenshot getgauge)
           echo "$release_description" >> desc.txt
           echo "Creating new draft for release v$version"
           hub release create -d -F ./desc.txt "v$version"
