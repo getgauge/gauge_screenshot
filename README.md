@@ -8,6 +8,10 @@ Simple cross-platform pure Go screenshot library. This is used by [Gauge](https:
 ## Install:
 `go get github.com/getgauge/gauge_screenshot`
 
+### Offline installation
+
+Download the plugin from [Releases](https://github.com/getgauge/gauge_screenshot/releases)
+
 ### Note to Windows users
 In order to compile this code, `gcc` must be installed. Please ensure that you install the MinGW gcc and *not* Cygwin. Also ensure that if you have 64-bit Go installed, then MinGW/gcc is also 64-bit.
 
