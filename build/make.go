@@ -43,6 +43,7 @@ const (
 	goOS              = "GOOS"
 	x86               = "386"
 	x86_64            = "amd64"
+	ARM64             = "arm64"
 	DARWIN            = "darwin"
 	LINUX             = "linux"
 	WINDOWS           = "windows"
@@ -283,6 +284,7 @@ var (
 		map[string]string{GOARCH: x86_64, goOS: DARWIN, CGO_ENABLED: "0"},
 		map[string]string{GOARCH: x86, goOS: LINUX, CGO_ENABLED: "0"},
 		map[string]string{GOARCH: x86_64, goOS: LINUX, CGO_ENABLED: "0"},
+		map[string]string{GOARCH: ARM64, goOS: LINUX, CGO_ENABLED: "0"},
 		map[string]string{GOARCH: x86, goOS: WINDOWS, CC: "i586-mingw32-gcc", CGO_ENABLED: "1"},
 		map[string]string{GOARCH: x86_64, goOS: WINDOWS, CC: "x86_64-w64-mingw32-gcc", CGO_ENABLED: "1"},
 	}
@@ -343,6 +345,8 @@ func getArch() string {
 	arch := getGOARCH()
 	if arch == x86 {
 		return "x86"
+	} else if arch == ARM64 {
+		return "arm64"
 	}
 	return "x86_64"
 }
