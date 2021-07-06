@@ -1,6 +1,6 @@
 {
     "id" : "screenshot",
-    "version" : "0.0.1",
+    "version" : "0.1.0",
     "name" : "Screenshot",
     "description" : "cross-platform command line screenshot utility",
     "scope" : [],
