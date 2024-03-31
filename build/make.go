@@ -23,7 +23,6 @@ import (
 	"flag"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"log"
 	"os"
 	"os/exec"
@@ -33,10 +32,7 @@ import (
 )
 
 const (
-	CGO_ENABLED = "CGO_ENABLED"
-)
-
-const (
+	CGO_ENABLED       = "CGO_ENABLED"
 	dotGauge          = ".gauge"
 	plugins           = "plugins"
 	GOARCH            = "GOARCH"
@@ -75,7 +71,7 @@ func compile() {
 	if *allPlatforms {
 		compileAcrossPlatforms()
 	} else {
-		compileGoPackage(screenshot)
+		compileGoPackage()
 	}
 }
 
@@ -180,7 +176,7 @@ func mirrorDir(src, dst string) error {
 		}
 		suffix, err := filepath.Rel(src, path)
 		if err != nil {
-			return fmt.Errorf("Failed to find Rel(%q, %q): %v", src, path, err)
+			return fmt.Errorf("failed to find Rel(%q, %q): %v", src, path, err)
 		}
 		return mirrorFile(path, filepath.Join(dst, suffix))
 	})
@@ -204,7 +200,7 @@ func executeCommand(command string, arg ...string) (string, error) {
 	return strings.TrimSpace(fmt.Sprintf("%s", bytes)), err
 }
 
-func compileGoPackage(packageName string) {
+func compileGoPackage() {
 	runProcess("go", "build", "-o", getGaugeExecutablePath(gaugeScreenshot))
 }
 
@@ -280,24 +276,23 @@ var binDir = flag.String("bin-dir", "", "Specifies OS_PLATFORM specific binaries
 
 var (
 	platformEnvs = []map[string]string{
-		map[string]string{GOARCH: x86, goOS: DARWIN, CGO_ENABLED: "0"},
 		map[string]string{GOARCH: x86_64, goOS: DARWIN, CGO_ENABLED: "0"},
-		map[string]string{GOARCH: x86, goOS: LINUX, CGO_ENABLED: "0"},
+		map[string]string{GOARCH: ARM64, goOS: DARWIN, CGO_ENABLED: "0"},
 		map[string]string{GOARCH: x86_64, goOS: LINUX, CGO_ENABLED: "0"},
 		map[string]string{GOARCH: ARM64, goOS: LINUX, CGO_ENABLED: "0"},
-		map[string]string{GOARCH: x86, goOS: WINDOWS, CC: "i586-mingw32-gcc", CGO_ENABLED: "1"},
 		map[string]string{GOARCH: x86_64, goOS: WINDOWS, CC: "x86_64-w64-mingw32-gcc", CGO_ENABLED: "1"},
+		map[string]string{GOARCH: ARM64, goOS: WINDOWS, CC: "aarch64-w64-mingw32-gcc", CGO_ENABLED: "1"},
 	}
 )
 
 func getPluginProperties(jsonPropertiesFile string) (map[string]interface{}, error) {
-	pluginPropertiesJson, err := ioutil.ReadFile(jsonPropertiesFile)
+	pluginPropertiesJson, err := os.ReadFile(jsonPropertiesFile)
 	if err != nil {
 		fmt.Printf("Could not read %s: %s\n", filepath.Base(jsonPropertiesFile), err)
 		return nil, err
 	}
 	var pluginJson interface{}
-	if err = json.Unmarshal([]byte(pluginPropertiesJson), &pluginJson); err != nil {
+	if err = json.Unmarshal(pluginPropertiesJson, &pluginJson); err != nil {
 		fmt.Printf("Could not read %s: %s\n", filepath.Base(jsonPropertiesFile), err)
 		return nil, err
 	}
@@ -309,7 +304,7 @@ func compileAcrossPlatforms() {
 		setEnv(platformEnv)
 		fmt.Printf("Compiling for platform => OS:%s ARCH:%s \n", platformEnv[goOS], platformEnv[GOARCH])
 		runProcess("go", "get", "./...")
-		compileGoPackage(screenshot)
+		compileGoPackage()
 	}
 }
 
@@ -361,10 +356,10 @@ func getGOARCH() string {
 }
 
 func getGOOS() string {
-	os := os.Getenv(goOS)
-	if os == "" {
+	goOs := os.Getenv(goOS)
+	if goOs == "" {
 		return runtime.GOOS
 
 	}
-	return os
+	return goOs
 }
