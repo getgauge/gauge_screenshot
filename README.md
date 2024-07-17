@@ -18,8 +18,8 @@ In order to compile this code, `gcc` must be installed. Please ensure that you i
 One way to install the required way of `gcc` on Windows is to use the [mingw-w64-install.exe](https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win32/Personal%20Builds/mingw-builds/installer/mingw-w64-install.exe/download) which can fetch and install the desired version of `gcc`.
 
 ## Dependencies:
-- Windows: https://github.com/TheTitanrain/w32
-- Linux/Freebsd: https://github.com/BurntSushi/xgb
+- Windows: https://github.com/gonutz/w32
+- Linux/Freebsd: https://github.com/jezel/xgb
 - OSx: `screencapture` :)
 
 ## Credits
