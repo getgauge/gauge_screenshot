@@ -1,6 +1,6 @@
 module github.com/getgauge/gauge_screenshot
 
-go 1.22
+go 1.23
 
 require (
 	github.com/gonutz/w32/v2 v2.11.1
