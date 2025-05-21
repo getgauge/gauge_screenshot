@@ -50,7 +50,6 @@ const (
 	gaugeScreenshot   = "gauge_screenshot"
 	deploy            = "deploy"
 	pluginJSONFile    = "plugin.json"
-	CC                = "CC"
 )
 
 var deployDir = filepath.Join(deploy, screenshot)
@@ -276,12 +275,12 @@ var binDir = flag.String("bin-dir", "", "Specifies OS_PLATFORM specific binaries
 
 var (
 	platformEnvs = []map[string]string{
-		map[string]string{GOARCH: x86_64, goOS: DARWIN, CGO_ENABLED: "0"},
-		map[string]string{GOARCH: ARM64, goOS: DARWIN, CGO_ENABLED: "0"},
-		map[string]string{GOARCH: x86_64, goOS: LINUX, CGO_ENABLED: "0"},
-		map[string]string{GOARCH: ARM64, goOS: LINUX, CGO_ENABLED: "0"},
-		map[string]string{GOARCH: x86_64, goOS: WINDOWS, CC: "x86_64-w64-mingw32-gcc", CGO_ENABLED: "1"},
-		map[string]string{GOARCH: ARM64, goOS: WINDOWS, CC: "aarch64-w64-mingw32-gcc", CGO_ENABLED: "1"},
+		{GOARCH: x86_64, goOS: DARWIN, CGO_ENABLED: "0"},
+		{GOARCH: ARM64, goOS: DARWIN, CGO_ENABLED: "0"},
+		{GOARCH: x86_64, goOS: LINUX, CGO_ENABLED: "0"},
+		{GOARCH: ARM64, goOS: LINUX, CGO_ENABLED: "0"},
+		{GOARCH: x86_64, goOS: WINDOWS, CGO_ENABLED: "0"},
+		{GOARCH: ARM64, goOS: WINDOWS, CGO_ENABLED: "0"},
 	}
 )
 
